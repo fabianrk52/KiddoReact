@@ -27,7 +27,7 @@ class Header extends Component{
     return(
           <div className="UserName">
               <p>Hey {this.state.name}</p>
-              <img src='{this.state.pic}' className="userPic"></img>
+              <img src={this.state.pic} className="userPic"></img>
           </div>
     )
     }

@@ -37,7 +37,7 @@ add(item) {
 
 eachIdea(sub,i){
     return (    
-    <a href="#"><li><span>{sub.name}</span></li></a>
+    <a key={sub+i} index={i} href="#"><li><span>{sub.name}</span></li></a>
       );
   }
 
