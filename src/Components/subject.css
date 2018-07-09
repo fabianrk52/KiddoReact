@@ -6,7 +6,6 @@
 .subjectbox{
    width: 412px;
    height: 238px;
-   background-color: white;
    border-radius: 25px;
    margin-top: 22px;
 }
@@ -21,7 +20,8 @@
    margin-top: 25px;
 }
 
-.subjectbox ul li span{
+
+.subjectbox li span{
    display: block;
    margin-left: 55px;
    margin-top: 25px;
