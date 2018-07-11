@@ -21,6 +21,7 @@ class Connected extends Component{
           {
               name: item.name,
               picture:item.picture,
+              email:item.email
           }]
         }));
       }

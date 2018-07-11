@@ -1,0 +1,26 @@
+.UserName{
+    margin-left: 19px;
+    margin-top:32px;
+ }
+ 
+ .starts{
+    margin-top: 35px;
+    margin-left: 250px;
+ }
+ .starts span{
+    margin-left: 5px;
+ }
+ 
+ .userPic{
+     height: 50px;
+     margin-left: 10px;
+ }
+
+ .contentInfo{
+    height: 414px;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    border: 1px solid;
+ 
+ }

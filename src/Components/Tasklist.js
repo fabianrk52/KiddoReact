@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
-import './subject.css';
+import './TaskList.css';
+import Task from "./task";
 
 
 class Subject extends Component{
     constructor(props){
         super(props);
     this.state={
-        sub:[]
+        task:[]
     };
-    this.eachIdea   = this.eachIdea.bind(this);
+    this.eachTask   = this.eachTask.bind(this);
     this.add        = this.add.bind(this);
+    this.showContent=this.showContent.bind(this);
 }
 
 add(item) {
     this.setState(prevState => ({
-      sub: [
-      ...prevState.sub,
+      task: [
+      ...prevState.task,
       {
           name: item.topic,
+          _id:item._id_task
       }]
     }));
   }
 
     componentWillMount(){
-        fetch("https://kiddo2018.herokuapp.com/user/get_user_taskList/user1@gmail.com")
+        fetch(`https://kiddo2018.herokuapp.com/user/get_user_taskList/${this.props.match.params.email}`)
+        
       .then((res)=> res.json())
       .then((data)=>{
           var self = this;
@@ -35,9 +39,15 @@ add(item) {
   });
 }
 
-eachIdea(sub,i){
+showContent(){
+    console.log("clicked");
+}
+
+eachTask(task,i){
     return (    
-    <a key={sub+i} index={i} href="#"><li><span>{sub.name}</span></li></a>
+    <Task Show={this.showContent} key={task+i} index={i}>
+        <a href={`/TaskInfo/${this.state._id}/${this.props.match.params.email}`}><li><span>{task.name}</span></li></a>
+    </Task>
       );
   }
 
@@ -46,7 +56,7 @@ eachIdea(sub,i){
         <div className="subjects">
           <div className="subjectbox">
               <ul>
-              {this.state.sub.map(this.eachIdea)}
+              {this.state.task.map(this.eachTask)}
               </ul>
           </div>
       </div>

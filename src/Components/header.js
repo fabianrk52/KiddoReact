@@ -6,8 +6,8 @@ class Header extends Component{
     constructor(props){
         super(props)
     this.state={
-        name:[],
-        pic:[]
+        data:[]
+
     }
 
     }
@@ -18,7 +18,8 @@ class Header extends Component{
         .then((data)=>{
             this.setState({
                 name:data.name,
-                pic:data.picture
+                pic:data.picture,
+                email:data.email
         })
         });
     }
@@ -26,7 +27,7 @@ class Header extends Component{
     render(){
     return(
           <div className="UserName">
-              <p>Hey {this.state.name}</p>
+              <a href={`/PersonalInfo/${this.state.email}`}>Hey {this.state.name}</a>
               <img src={this.state.pic} className="userPic"></img>
           </div>
     )
