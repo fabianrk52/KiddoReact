@@ -12,15 +12,21 @@
  }
  
  .userPic{
-     height: 50px;
-     margin-left: 10px;
+     height: 100px;
+     margin-left:160px;
+     margin-top: 20px;
  }
 
  .contentInfo{
     height: 414px;
     width: 100%;
     margin-top: 50px;
-    text-align: center;
-    border: 1px solid;
- 
+    text-align: left;
+    border: #ed334d 3px solid;
+    border-radius: 25px;
+ }
+
+ .contentInfo p{
+     margin-left: 150px;
+     margin-top: 30px;
  }

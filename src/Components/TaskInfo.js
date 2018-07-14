@@ -17,7 +17,7 @@ class InfoTask extends Component{
 
 eachHelper(sub,i){
     return (    
-    <a key={sub+i} index={i} href="#"><img className="picConnected" src={sub.picture}></img></a>
+    <a key={sub+i} index={i} href={`/UpdateGrade/${this.props.match.params.email}/${this.props.match.params.id_task}`}><img className="picConnected" src={sub.picture}></img></a>
       );
   }
 
@@ -31,7 +31,6 @@ add(item) {
           email:item.email
       }]
     }));
-    console.log(item);
   }
 
 
@@ -39,7 +38,6 @@ componentWillMount(){
     fetch(`https://kiddo2018.herokuapp.com/user/get_user_by_email/${this.props.match.params.email}`)
   .then((res)=> res.json())
   .then((data)=>{
-      console.log(data);
       this.setState({
           name:data.name,
           pic:data.picture,
@@ -51,8 +49,8 @@ componentWillMount(){
     fetch(`https://kiddo2018.herokuapp.com/user/users_complete/${this.props.match.params.id_task}`)
     .then((res)=> res.json())
     .then((data)=>{
+        data.map((data)=>this.add(data));
         console.log(data);
-        this.add(data);
     })
 }
 
@@ -63,19 +61,21 @@ componentWillMount(){
         <div id="wrapper">
          <div className="UserName">
          <a href={`/PersonalInfo/${this.props.match.params.email}`}>Hey {this.state.name}</a>
-              <img src={this.state.pic} className="userPic"></img>
+         <span className="rankHeader">Rank: {this.state.rank}</span>
         </div>
         <div className="contentInfo">
             <p>Name:{this.state.name}</p>
             <p>Department: {this.state.department}</p>
             <p>Phone: {this.state.phone}</p>
             <p>Rank: {this.state.rank}</p>
-        <div>
+            <p>Status: {this.state.status}</p> 
+        </div>
+            <div className="connected">
                   <ul>
+                <p>Who finished?</p>
                   {this.state.data.map(this.eachHelper)}
                   </ul>
-        </div>
-        </div>
+            </div>
         <div className="footer">
           <p>Nodody's Helping U? Start Teacher Chat</p>
       </div>

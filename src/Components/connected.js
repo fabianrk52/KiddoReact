@@ -48,6 +48,7 @@ class Connected extends Component{
         render(){
         return(
             <div>
+                <p className="finished">Who've Finished:</p>
                   <ul>
                   {this.state.sub.map(this.eachIdea)}
                   </ul>

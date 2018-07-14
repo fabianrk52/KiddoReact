@@ -5,11 +5,9 @@ body {
 }
 
 #wrapper{
-  border: solid 1px black;
   width: 414px;
-  height: 1000px; 
+  height: 900px; 
    font-family: Arial, Helvetica, sans-serif;
-   background-color: #fafafa;
 }
 
 a,a:hover{
@@ -23,6 +21,11 @@ header{
    size: 12px;
 }
 
+.rankHeader{
+  float: right;
+  margin-right: 10px;
+  
+}
 
 
 

@@ -24,10 +24,10 @@ class Main extends Component{
         ...prevState.data,
         {
             name: item.topic,
-            id:item._id
+            id:item._id_task,
+            
         }]
       }));
-      console.log(item);
     }
   
 
@@ -38,17 +38,18 @@ componentWillMount(){
         this.setState({
             name:data.name,
             pic:data.picture,
-            email:data.email
+            email:data.email,
+            rank:data.rank
     })
     });
     fetch(`https://kiddo2018.herokuapp.com/user/get_user_taskList/${this.props.match.params.email}`)
     .then((res)=> res.json())
     .then((data)=>{
         var self = this;
-        console.log(data[0].tasks);
-        data[0].tasks.map((item) =>{
+        data[0].taskList.map((item) =>{
             self.add(item);
-          }
+            console.log(item);
+            }
     );
 });
 }
@@ -56,7 +57,7 @@ componentWillMount(){
 eachTask(task,i){
   return (    
   <Task Show={this.showContent} key={task+i} index={i}>
-      <a href={`/TaskInfo/${task.id}/${this.state.email}`}><li><span>{task.name}</span></li></a>
+      <a href={`/TaskInfo/${task.id}/${this.state.email}`}><li><span>{task.topic}</span></li></a>
   </Task>
     );
 }
@@ -67,7 +68,7 @@ eachTask(task,i){
       <div id="wrapper">
       <div className="UserName">
               <a href={`/PersonalInfo/${this.state.email}`}>Hey {this.state.name}</a>
-              <img src={this.state.pic} className="userPic"></img>
+              <span className="rankHeader">Rank: {this.state.rank}</span>
       </div>
       <div className="nav">
           <a href="#" className="navboxselected"><div className="datebox">Jan 12</div><div className="daybox">Today</div></a>

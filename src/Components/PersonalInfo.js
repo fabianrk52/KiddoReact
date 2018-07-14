@@ -39,16 +39,17 @@ componentWillMount(){
         <div id="wrapper">
          <div className="UserName">
          <a href={`/PersonalInfo/${this.props.match.params.email}`}>Hey {this.state.name}</a>
-              <img src={this.state.pic} className="userPic"></img>
+              <span className="rankHeader">Rank: {this.state.rank}</span>
         </div>
         <div className="contentInfo">
             <p>Name:{this.state.name}</p>
             <p>Department: {this.state.department}</p>
             <p>Phone: {this.state.phone}</p>
             <p>Rank: {this.state.rank}</p>
-            <img src={this.state.pic}></img>
-
+            <img className="userPic" src={this.state.pic}></img>
         </div>
+        <div className="connected">
+            </div>
         <div className="footer">
           <p>Nodody's Helping U? Start Teacher Chat</p>
       </div>
