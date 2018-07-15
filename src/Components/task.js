@@ -8,21 +8,23 @@ class Task extends Component{
     this.state={
         sub:[]
     };
-    this.show=this.show.bind(this);
 }
 
-show(){
-    this.props.Show();
+//print with line
+printComplete(){
+    return(<a href={`/TaskInfo/${this.props.id}/${this.props.email}`}><li><span className="TaskDone"> {this.props.name}</span></li></a>)
+}
+
+//print without line
+printUnComplete(){
+    return(<a href={`/TaskInfo/${this.props.id}/${this.props.email}`}><li><span>{this.props.name}</span></li></a>)
 }
 
 
-
+    //if status is completed print Task name with line, else without
     render(){
     return(
-        <div>
-            {this.props.children}
-        </div>
-        
+        this.props.status==="Completed"?this.printComplete():this.printUnComplete()
     )
     }
 }

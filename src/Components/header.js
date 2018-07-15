@@ -13,13 +13,14 @@ class Header extends Component{
     }
 
     componentWillMount(){
-          fetch("https://kiddo2018.herokuapp.com/user/get_user_by_email/user1@gmail.com")
+          fetch("https://kiddo2018.herokuapp.com/user/get_user_by_email/"+this.props.email)
         .then((res)=> res.json())
         .then((data)=>{
             this.setState({
                 name:data.name,
                 pic:data.picture,
-                email:data.email
+                email:data.email,
+                rank:data.rank
         })
         });
     }
@@ -28,7 +29,7 @@ class Header extends Component{
     return(
           <div className="UserName">
               <a href={`/PersonalInfo/${this.state.email}`}>Hey {this.state.name}</a>
-              <img src={this.state.pic} className="userPic"></img>
+              <span className="rankHeader"> Rank: {this.state.rank} </span>
           </div>
     )
     }

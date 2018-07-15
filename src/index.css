@@ -27,5 +27,152 @@ header{
   
 }
 
+input{
+  display: block;
+  margin-left: 33%;
+}
+
+.TaskDone{
+  text-decoration-line: line-through;
+}
+
+.connected{
+  width: 100%;
+  height: 155px;
+}
+
+.picConnected{
+  width: 69px;
+  margin-left: 12px;
+}
+
+.finished{
+  margin-left: 50px;
+}
+
+.footer{
+  background-color: #ed334d;
+  height: 231px;
+  width: 100%;
+}
+
+.footer p{
+  text-align: center;
+  color: white;
+  padding-top: 50px;
+  font-size: 20px;
+}
 
 
+.UserName{
+  margin-left: 19px;
+}
+
+.starts{
+  margin-top: 35px;
+  margin-left: 250px;
+}
+.starts span{
+  margin-left: 5px;
+}
+
+.userPic{
+   height: 150px;
+}
+
+
+.nav{
+  display: flex;
+  margin-left: 12px;
+  margin-top: 35px;
+}
+
+.navbox{
+  width: 126px;
+  height: 65px;
+  border-radius: 100px;
+}
+
+.datebox{
+  margin-left: 15%;
+  margin-top: 10%;
+
+}
+
+.daybox{
+  margin-left: 15%;
+  margin-top: 5%;
+  font-size: 20px;
+}
+
+.navboxselected{
+  background-color: black;
+  color: white;
+  width: 126px;
+  height: 65px;
+  border-radius: 100px;
+}
+
+.UserName{
+  margin-left: 19px;
+  margin-top:32px;
+}
+
+.starts{
+  margin-top: 35px;
+  margin-left: 250px;
+}
+.starts span{
+  margin-left: 5px;
+}
+
+.userPic{
+   height: 100px;
+   margin-left:160px;
+   margin-top: 20px;
+}
+
+.contentInfo{
+  height: 414px;
+  width: 100%;
+  margin-top: 50px;
+  text-align: left;
+  border: #ed334d 3px solid;
+  border-radius: 25px;
+}
+
+.contentInfo p{
+   margin-left: 150px;
+   margin-top: 30px;
+}
+
+.subjects{
+  height: 414px;
+  width: 100%;
+
+}
+.subjectbox{
+  width: 412px;
+  height: 238px;
+  border-radius: 25px;
+  margin-top: 22px;
+}
+
+.subjectbox ul li{
+  list-style-type: none;
+  width: 350px;
+  height: 77px;
+  border: #ed334d 3px solid;
+  margin-left: -10px;
+  border-radius: 50px;
+  margin-top: 25px;
+}
+
+
+.subjectbox li span{
+  display: block;
+  margin-left: 55px;
+  margin-top: 25px;
+  font-size: 20px;
+  color: #ed334d;
+}

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import '../index.css';
 import Header from "./header";
 import Nav from "./nav"
-import Tasklist from "./Tasklist"
 import Footer from "./footer"
 import Connected from "./connected"
 import Task from './task';
+import data from "../data/data.json"
 
 
 class Main extends Component{
@@ -18,19 +18,21 @@ class Main extends Component{
       this.eachTask=this.eachTask.bind(this);  
 }
 
+//Add to state
     add(item) {
       this.setState(prevState => ({
         data: [
         ...prevState.data,
         {
             name: item.topic,
-            id:item._id_task,
+            id:item._id,//_id_task, 
+            status:item.status,
             
         }]
       }));
     }
   
-
+//get data from user
 componentWillMount(){
       fetch(`https://kiddo2018.herokuapp.com/user/get_user_by_email/${this.props.match.params.email}`)
     .then((res)=> res.json())
@@ -42,23 +44,24 @@ componentWillMount(){
             rank:data.rank
     })
     });
-    fetch(`https://kiddo2018.herokuapp.com/user/get_user_taskList/${this.props.match.params.email}`)
-    .then((res)=> res.json())
-    .then((data)=>{
-        var self = this;
-        data[0].taskList.map((item) =>{
-            self.add(item);
-            console.log(item);
-            }
-    );
-});
+  ///  fetch(`https://kiddo2018.herokuapp.com/user/get_user_taskList/${this.props.match.params.email}`)
+    //.then((res)=> res.json())
+   // .then((data)=>{
+     //   data[0].taskList.map((item) =>{
+       //     this.add(item);
+         //   console.log(item);
+           // }
+    //);
+//});
+    data.map((item)=>{
+        this.add(item);
+    })
 }
 
+//craete Component TaskList 
 eachTask(task,i){
   return (    
-  <Task Show={this.showContent} key={task+i} index={i}>
-      <a href={`/TaskInfo/${task.id}/${this.state.email}`}><li><span>{task.topic}</span></li></a>
-  </Task>
+  <Task id={task.id} status={task.status} email={this.props.match.params.email} name={task.name}  key={task+i} index={i} />
     );
 }
 
@@ -66,15 +69,8 @@ eachTask(task,i){
   render(){
       return(
       <div id="wrapper">
-      <div className="UserName">
-              <a href={`/PersonalInfo/${this.state.email}`}>Hey {this.state.name}</a>
-              <span className="rankHeader">Rank: {this.state.rank}</span>
-      </div>
-      <div className="nav">
-          <a href="#" className="navboxselected"><div className="datebox">Jan 12</div><div className="daybox">Today</div></a>
-          <a href="#" className="navbox"><div className="datebox">Jan 12</div><div className="daybox">Tommorow</div></a>
-          <a href="#" className="navbox"><div className="datebox">Jan 12</div><div className="daybox">Friday</div></a>
-      </div>
+       <Header email={this.props.match.params.email} />
+      <Nav />
       <div className="subjects">
           <div className="subjectbox">
               <ul>
