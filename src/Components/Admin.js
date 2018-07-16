@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Footer from "./footer"
 import Connected from "./connected"
 import Nav from "./nav"
+import swal from 'sweetalert2'
 
 class Admin extends React.Component {
   constructor(props) {
@@ -21,7 +22,10 @@ class Admin extends React.Component {
     this.handleChangeTeacher=this.handleChangeTeacher.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChangeTopic(event){
+
+//handle each input
+
+handleChangeTopic(event){
     this.setState({
       topic: event.target.value,
   });
@@ -47,15 +51,8 @@ handleChangeDepartment(event){
 });
 }
 
+//submit with post to the API
   handleSubmit(event) {
-    var data={
-      topic:this.state.topic,
-      teacher:this.state.teacher,
-      submission:this.state.submission,
-      content:this.state.content,
-      department:this.state.department
-    };
-    console.log(data);
     event.preventDefault();
     fetch("https://kiddo2018.herokuapp.com/coordinator/new_task/",{
         method:'POST',
@@ -68,6 +65,8 @@ handleChangeDepartment(event){
     })
     .then(res=>res.json())
     .catch(err=>console.log(err))
+    .then(swal('Created','Keep working','success'))
+    
   }
 
   render() {

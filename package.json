@@ -2,9 +2,11 @@
   "name": "kiddo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://shenkar.html5-book.co.il/2017-2018/dcs/dev_187/",
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-google-login": "^3.2.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "sweetalert2": "^7.25.3"

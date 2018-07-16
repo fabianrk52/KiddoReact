@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './connected.css';
 import Helper from "./Helper"
 
 
@@ -9,12 +8,12 @@ class Connected extends Component{
         this.state={
             data:[]
         };
-        this.eachIdea   = this.eachIdea.bind(this);
+        this.eachHelper   = this.eachHelper.bind(this);
         this.add        = this.add.bind(this);
 
     }
 
-
+    //add to state
     add(item) {
         this.setState(prevState => ({
           data: [
@@ -26,19 +25,19 @@ class Connected extends Component{
           }]
         }));
       }
-    
+    //load from API
         componentWillMount(){
             fetch("https://kiddo2018.herokuapp.com/user/get_all_users/")
           .then((res)=> res.json())
           .then((data)=>{
-              data.map((item) =>{
+              data.forEach((item) =>{
                   this.add(item);
                 }
           );
       });
     }
-    
-    eachIdea(sub,i){
+    //create Helper
+    eachHelper(sub,i){
         return ( 
         <Helper urlTo="PersonalInfo" email={sub.email} pic={sub.picture} key={'sub'+i} index={i} />
           );
@@ -49,7 +48,7 @@ class Connected extends Component{
             <div>
                 <p className="finished">Another Users:</p>
                   <ul>
-                  {this.state.data.map(this.eachIdea)}
+                  {this.state.data.map(this.eachHelper)}
                   </ul>
             </div>
         )

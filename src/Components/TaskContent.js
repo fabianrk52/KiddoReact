@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './header.css';
 
 
 class TaskContent extends Component{
@@ -11,29 +10,25 @@ class TaskContent extends Component{
     }
     }
     componentWillMount(){
-        fetch(`https://kiddo2018.herokuapp.com/user/get_user_by_email/${this.props.fetchFrom}`)
-      .then((res)=> res.json())
-      .then((data)=>{
+    fetch(`http://kiddo2018.herokuapp.com/user/task_content/${this.props.url}`)
+        .then((res)=> res.json())
+        .then((data)=>{
             this.setState({
-                name:data.name,
-                pic:data.picture,
-                department:data.department,
-                phone:data.phone,
-                rank:data.rank
+                    topic:data.topic,
+                    teacher:data.teacher,
+                    content:data.content,
+                    submission:data.submission,
             });
-        })
-        }
-
-
+        });
+    }
 
     render(){
     return(
         <div className="contentInfo">
-            <p>Topic:{this.state.name}</p>
-            <p>Department: {this.state.department}</p>
-            <p>Content: {this.state.phone}</p>
-            <p>Submission: {this.state.rank}</p>
-            <p>Status: {this.state.status}</p> 
+            <p>Topic:{this.state.topic}</p>
+            <p>Teacher: {this.state.teacher}</p>
+            <p>Content: {this.state.content}</p>
+            <p>Submission: {this.state.submission}</p>
         </div>
     )
 }

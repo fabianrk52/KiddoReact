@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './PersonalInfo.css';
 import Footer from "./footer"
 import Header from "./header"
 import Connected from "./connected"

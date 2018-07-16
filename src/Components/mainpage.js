@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import '../index.css';
 import Header from "./header";
 import Nav from "./nav"
 import Footer from "./footer"
 import Connected from "./connected"
 import Task from './task';
-import data from "../data/data.json"
 
 
 class Main extends Component{
@@ -25,7 +23,7 @@ class Main extends Component{
         ...prevState.data,
         {
             name: item.topic,
-            id:item._id,//_id_task, 
+            id:item._id_task, 
             status:item.status,
             
         }]
@@ -33,35 +31,28 @@ class Main extends Component{
     }
   
 //get data from user
-componentWillMount(){
-      fetch(`https://kiddo2018.herokuapp.com/user/get_user_by_email/${this.props.match.params.email}`)
+componentWillMount(){  
+  fetch(`https://kiddo2018.herokuapp.com/user/get_user_by_email/${this.props.match.params.email}`)
     .then((res)=> res.json())
     .then((data)=>{
-        this.setState({
-            name:data.name,
-            pic:data.picture,
-            email:data.email,
-            rank:data.rank
-    })
-    });
-  ///  fetch(`https://kiddo2018.herokuapp.com/user/get_user_taskList/${this.props.match.params.email}`)
-    //.then((res)=> res.json())
-   // .then((data)=>{
-     //   data[0].taskList.map((item) =>{
-       //     this.add(item);
-         //   console.log(item);
-           // }
-    //);
-//});
-    data.map((item)=>{
-        this.add(item);
-    })
+      this.setState({
+        name:data.name,
+        pic:data.picture,
+        email:data.email,
+        rank:data.rank,
+});
+        data.taskList.map((item) =>{
+            this.add(item);
+            console.log(item);
+           }
+    );
+});
 }
 
 //craete Component TaskList 
 eachTask(task,i){
   return (    
-  <Task id={task.id} status={task.status} email={this.props.match.params.email} name={task.name}  key={task+i} index={i} />
+  <Task id={task.id} status={task.status} email={this.props.match.params.email} key={task+i} index={i} />
     );
 }
 

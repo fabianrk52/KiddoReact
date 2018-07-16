@@ -3,6 +3,7 @@ import Footer from "./footer"
 import Connected from "./connected"
 import Header from "./header"
 import swal from 'sweetalert2'
+import Nav from "./nav"
 
 class FormGrade extends React.Component {
   constructor(props) {
@@ -13,45 +14,31 @@ class FormGrade extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //Save the input in state
   handleChange(event) {
     this.setState({value: event.target.value});
   }
+  
 
+  //make put to API
   handleSubmit(event) {
     event.preventDefault();
     fetch(`https://kiddo2018.herokuapp.com/user/calculate_rank/${this.props.match.params.email}/${this.props.match.params.id}/${this.state.value}`,{
       method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"           
+      },
     })
     .then(res=>res.json())
+    .catch(err=>console.log(err))
     .then(swal("Update done",'Thank you :)','success'));
   }
-
-  componentWillMount(){
-    fetch(`https://kiddo2018.herokuapp.com/user/get_user_by_email/${this.props.match.params.email}`)
-  .then((res)=> res.json())
-  .then((data)=>{
-      this.setState({
-          name:data.name,
-          pic:data.picture,
-          email:data.email,
-          rank:data.rank
-  })
-
-  
-  });
-}
-
-
 
   render() {
     return (
         <div id="wrapper">
-        <Header email={this.props.match.params.email} />
-        <div className="nav">
-          <a href="#" className="navboxselected"><div className="datebox">Jan 12</div><div className="daybox">Today</div></a>
-          <a href="#" className="navbox"><div className="datebox">Jan 12</div><div className="daybox">Tommorow</div></a>
-          <a href="#" className="navbox"><div className="datebox">Jan 12</div><div className="daybox">Friday</div></a>
-      </div>
+        <Header email={this.props.match.params.email}/>
+        <Nav/>
       <div className="contentInfo">
       <h2> Grade {this.state.name}</h2>  
       <form onSubmit={this.handleSubmit}>

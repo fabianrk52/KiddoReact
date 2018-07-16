@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './TaskList.css';
 
 
 class Task extends Component{
@@ -10,14 +9,25 @@ class Task extends Component{
     };
 }
 
+
+componentWillMount(){
+    fetch(`https://kiddo2018.herokuapp.com/user/task_content/${this.props.id}`)
+    .then((res)=> res.json())
+    .then((data)=>{
+            this.setState({
+                name:data.topic,
+            })
+        });
+    };
+
 //print with line
 printComplete(){
-    return(<a href={`/TaskInfo/${this.props.id}/${this.props.email}`}><li><span className="TaskDone"> {this.props.name}</span></li></a>)
+    return(<a href={`/TaskInfo/${this.props.id}/${this.props.email}`}><li><span className="TaskDone"> {this.state.name}</span></li></a>)
 }
 
 //print without line
 printUnComplete(){
-    return(<a href={`/TaskInfo/${this.props.id}/${this.props.email}`}><li><span>{this.props.name}</span></li></a>)
+    return(<a href={`/TaskInfo/${this.props.id}/${this.props.email}`}><li><span>{this.state.name}</span></li></a>)
 }
 
 
