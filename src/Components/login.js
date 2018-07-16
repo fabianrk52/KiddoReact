@@ -25,6 +25,7 @@ class Login extends Component{
                 buttonText="GOOGLE ME"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}>
+                <h1>Kiddo</h1>
                 <button className="loginButton">
                     Login with Google
                 </button>
